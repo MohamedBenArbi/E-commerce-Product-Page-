@@ -20,6 +20,7 @@ import imm4 from "./image-product-4.jpeg"
 
 import nt from "./icon-next.svg"
 import bc from "./icon-previous.svg"
+import Component1 from './Component1';
 
 
 
@@ -40,6 +41,11 @@ function App() {
     setimagee(image)
 
   }, [image])
+
+  useEffect(() => {
+
+
+  }, [items])
 
   function next() {
 
@@ -154,11 +160,23 @@ function App() {
   }
 
 
-  function addcart() {
+
+
+
+  function additem() {
+    const newitem =
+    {
+      img: imm1,
+      desc: " Shelby Mid Chelsy Boots",
+      price: 125,
+      qt: count
+
+
+    }
+    setitems([...items, newitem])
 
     setcart(cr + count)
     setcount(0)
-
   }
   return (
     <>
@@ -193,13 +211,14 @@ function App() {
             <img src={avatar} className='h-10 pl-10' />
 
 
-            <div id='car' className='bg-gray-700 rounded-xl w-[350px] h-[300px] absolute top-[60px] right-[120px] hidden ' >
-              <p>Cart</p>
+            <div id='car' className='bg-gray-700 rounded-xl w-[350px] h-[300px] absolute top-[60px] right-[120px] hidden overflow-scroll ' >
 
-              <div>
-                <img src='' />
+              {items.map((itm) => {
+                return <Component1 price={itm.price} img={itm.img} qt={itm.qt} />
 
-              </div>
+              })}
+
+
 
             </div>
 
@@ -298,7 +317,7 @@ function App() {
 
               <div className='bg-gray-700 text-white w-1/2 h-[40px] flex items-center justify-center rounded-xl'>
                 <img src={cart} />
-                <button onClick={addcart} className='ml-3 font-bold outline-none'>Add to cart</button>
+                <button onClick={additem} className='ml-3 font-bold outline-none'>Add to cart</button>
 
               </div>
 
